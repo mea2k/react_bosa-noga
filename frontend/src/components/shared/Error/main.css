@@ -1,0 +1,33 @@
+﻿.error {
+    min-height: 50px;
+    line-height: 20px;
+    margin: 5px;
+    padding: 15px 0 15px 0;
+    text-align: center;
+    vertical-align: middle;
+    background-color: lightPink;
+    border: 1px solid lightCoral;
+    border-radius: 4px;
+}
+
+    .error * {
+        /* display: inline-block;
+           white-space: nowrap;
+           overflow: hidden;
+        */
+    }
+    .error .error-link {
+        color: gray;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+        .error .error-link:hover {
+            color: dimgray;
+            text-decoration: underline;
+        }
+
+.error-content {
+    font-size: small;
+    white-space: nowrap;
+    overflow: hidden;
+}

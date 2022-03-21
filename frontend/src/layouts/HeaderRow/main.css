@@ -1,0 +1,30 @@
+﻿/* Header */
+.header-controls-pics {
+    display: flex;
+    justify-content: space-between;
+    max-width: 280px;
+    margin-left: auto;
+}
+
+.header-controls-pic {
+    display: flex;
+    z-index: 10;
+}
+
+    .header-controls-pic img {
+        width: 32px;
+        height: 32px;
+        margin: 0 10px;
+        cursor: pointer;
+        object-fit: cover;
+        object-position: bottom;
+        z-index: 10;
+    }
+
+
+
+.header-controls-profile {
+    position: relative;
+    background-position: -32px 0;
+}
+

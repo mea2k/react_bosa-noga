@@ -1,0 +1,50 @@
+﻿
+
+
+.header-controls-search {
+    position: relative;
+    z-index: 1;
+    opacity: 1;
+}
+
+
+.header-controls-search-form {
+    position: absolute;
+    right: 65px;
+    top: calc(50% - 19px);
+    display: flex;
+    width: 233px;
+    height: 38px;
+    padding: 0 20px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px #D4E4E6;
+    border-radius: 50px;
+    text-align: right;
+}
+
+    .header-controls-search-form .form-control {
+        width: 100%;
+        height: 100%;
+        color: #333333;
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+
+.control-show {
+    /*transform: translateX(+50%);*/
+    transform: scaleX(0);
+    animation: showAnim 1s forwards;
+    overflow: hidden;
+    z-index: 1;
+}
+
+
+@keyframes showAnim {
+    0% {
+        transform: translateX(+50%) scaleX(0);
+    }
+    100% {
+        transform: translateX(0) scaleX(1);
+    }
+}

@@ -1,0 +1,20 @@
+﻿.header-controls-cart {
+    position: relative;
+    background-position: 0 0;
+}
+
+.header-controls-cart-full {
+    position: absolute;
+    right: -10px;
+    top: -5px;
+    display: block;
+    height: 21px;
+    width: 21px;
+    font-size: 11px;
+    line-height: 21px;
+    text-align: center;
+    color: #FFFFFF;
+    border-radius: 50%;
+    background: linear-gradient(90deg, #ff65a5 1.11%, #ff8076 100%);
+    box-shadow: 0px 2px 8px rgba(255, 101, 165, 0.6), inset 0px 1px 1px #ff8076;
+}

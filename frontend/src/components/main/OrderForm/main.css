@@ -1,0 +1,10 @@
+
+.order {
+    min-height: 600px;
+}
+
+
+.order-card {
+    max-width: 30rem;
+    margin: 0 auto;
+}

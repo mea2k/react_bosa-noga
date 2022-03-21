@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Footer from './layouts/Footer';
+import Header from './layouts/Header';
+import Main from './layouts/Main';
+import MainPage from './layouts/MainPage';
+import CatalogPage from './layouts/CatalogPage';
+import CartPage from './layouts/CartPage';
+import ItemPage from './layouts/ItemPage';
+import AboutPage from './layouts/AboutPage';
+import ContactsPage from './layouts/ContactsPage';
+import ErrorPage from './layouts/ErrorPage';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import { MenuData } from './const/menu';
+import { PayData } from './const/payData';
+import { ContactsData } from './const/contacts';
+
+import './main.css';
+
+
+
+
+
+const App = () => (
+    <div className="container">
+        <Router>
+
+            <Header menu={MenuData} searchUrl="/catalog" />
+
+            <Main>
+                <Routes>
+                    <Route path="/">
+                        <Route index element={<MainPage />} />
+                        <Route path="/products/:id" element={<ItemPage />} />
+                        <Route path="/catalog" element={<CatalogPage />} />
+                        <Route path="/cart" element={<CartPage />} />
+                       <Route path="/contacts" element={<ContactsPage data={ContactsData} />} />
+                        <Route path="/about" element={<AboutPage data={ContactsData} />} />
+                        <Route path="*" element={<ErrorPage />} />
+                    </Route>
+                </Routes>
+            </Main>
+
+            <Footer menu={MenuData} payData={PayData} contacts={ContactsData} />
+
+        </Router>
     </div>
-  );
-}
+);
+
 
 export default App;
