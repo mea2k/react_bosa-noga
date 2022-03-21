@@ -7,8 +7,16 @@ const koaBody = require('koa-body');
 
 const categories = JSON.parse(fs.readFileSync('./data/categories.json'));
 const items = JSON.parse(fs.readFileSync('./data/products.json'));
-const topSaleIds = [66, 65, 73];
+
+//const topSaleIds = [66, 65, 73];
+// теперь генерится случайный индекс эдемента items,
+// и потом в массив topSaleIds помещаются ID товаров (items[rand_index].id)
+const topSaleIds = [items[Math.floor(Math.random() * items.length)].id, items[Math.floor(Math.random() * items.length)].id, items[Math.floor(Math.random() * items.length)].id];
+console.log('topSales: ', topSaleIds)
+
 const moreCount = 6;
+
+var orderID = 1;
 
 const itemBasicMapper = item => ({
     id: item.id,
@@ -22,14 +30,14 @@ const randomNumber = (start, stop) => {
     return Math.floor(Math.random() * (stop - start + 1)) + start;
 }
 
-const fortune = (ctx, body = null, status = 200, successProb = 1, delay = 0) => {
-    const delayMs = randomNumber(0, delay) * 1000;
+const fortune = (ctx, body = null, status = 200, successProb = 0.75, delay = 1) => {
+    const delayMs = randomNumber(0, delay + 1) * 1000;
     return new Promise((resolve, reject) => {
-        settimeout(() => {
-             if (math.random() > successProb) {
-                 reject(new Error(ctx.method + ' ' + ctx.url + ' - Something bad happened'));
-                 return;
-             }
+        setTimeout(() => {
+            if (Math.random() > successProb) {
+                reject(new Error(ctx.method + ' ' + ctx.url + ' - Something bad happened'));
+                return;
+            }
 
             ctx.response.status = status;
             ctx.response.body = body;
@@ -106,7 +114,13 @@ router.post('/api/order', async (ctx, next) => {
         return fortune(ctx, 'Bad Request', 400);
     }
 
-    return fortune(ctx, null, 204);
+    let deliveryDate = new Date();
+    deliveryDate.setDate(deliveryDate.getDate() + randomNumber(1,5));
+    const result = {
+        order: orderID++,
+        deliveryDate: deliveryDate
+    };
+    return fortune(ctx, result, 200, 0.3);
 });
 
 app.use(router.routes())
