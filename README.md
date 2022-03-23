@@ -10,9 +10,9 @@
 Серверная часть ([backend/server.js](backend/server.js)):
 * `GET /api/top-sales` - хиты продаж (3 товара)
 * `GET /api/categories` - категории товаров ('мужская обувь', 'женская обувь', 'детская обувь' и пр.)
-* `GET /api/items?q=<text>&categoryId=<catID>&offset=<num>` - поиск товаров по имени (`q`), категории (`catID`) и выдача 6 очередных похиций, начиная с `num`
+* `GET /api/items?q=<text>&categoryId=<catID>&offset=<num>` - поиск товаров по имени (`q`), категории (`catID`) и выдача 6 очередных позиций, начиная с `num`
 * `GET /api/items/:id` - получение информации о выбранном товаре
-* `POST /api/order` - отправка зхапроса на формирование заказа. Сам заказ (`{owner: {phone,address}, items: [...]}` передается в теле запроса. Результат - объект `{orderId, deliveryDate}`
+* `POST /api/order` - отправка запроса на формирование заказа. Сам заказ (`{owner: {phone,address}, items: [...]}` передается в теле запроса. Результат - объект `{orderId, deliveryDate}`
 
 
 Все запросы:
@@ -32,7 +32,7 @@
 Вся логика работы Store, Reducers, Saga основана на константах.
 В файле [frontend/src/const/reducerNames.js](frontend/src/const/reducerNames.js) содержатся следующая информация:
 *  название веток в Store, массива генераторов и обработчиков событий (reducers[]).
-*  URL backend-сервера для обращение на получение соответствующих данных
+*  URL backend-сервера для обращения на получение соответствующих данных
 
 Предусмотрены следующие виды подветок:
 * работающие со списком элементов (`reducersListData`) - ТОП-продаж, список товаров, каталог товаров
@@ -49,7 +49,9 @@
    *    SAGA такие события НЕ прослушивает
 
 ### Обработчики событий (Reducers)
-Обработчики событий [frontend/src/reducers/](frontend/src/reducers/index.js) создаются автоматически с помощью `createSlice` и данных из [frontend/src/const/reducerNames.js](frontend/src/const/reducerNames.js). Реализованы седующие шаблоны:
+Обработчики событий [frontend/src/reducers/](frontend/src/reducers/index.js) создаются автоматически с помощью `createSlice` и данных из [frontend/src/const/reducerNames.js](frontend/src/const/reducerNames.js). 
+
+Реализованы следующие шаблоны:
 * `generateItemsReducer` - для создания веток по работе с массивами элементов ([frontend/src/reducers/templateItemsReducer.js](frontend/src/reducers/templateItemsReducer.js))
 * `generateItemDetailsReducer` - для создания веток по работе с отдельным элементом ([frontend/src/reducers/templateItemDetailsReducer.js](frontend/src/reducers/templateItemDetailsReducer.js))
 * `generatePostDataReducer` - для создания веток по работе с массивами элементов ([frontend/src/reducers/templatePostDataReducer.js](frontend/src/reducers/templatePostDataReducer.js))
@@ -68,7 +70,7 @@
 
 
 В корневом файле [frontend/src/reducers/index.js](frontend/src/reducers/index.js) реализован следующий функционал:
-* комбинирлвание обработчиков по разным ветвям в общий массив обработчиков событий [combineReducers](frontend/src/reducers/index.js#L24-L33)
+* комбинирование обработчиков по разным ветвям в общий массив обработчиков событий [combineReducers](frontend/src/reducers/index.js#L24-L33)
 * создание массива событий (точнее массива функций создания событий actionCreators) для каждой ветки Store [Actions](frontend/src/reducers/index.js#L35-L40)
 
 
@@ -78,7 +80,7 @@
    * Универсальная Функция-генератор-работник (worker) для обработки событий массива элементов
    * PARAMS:
      * name    - имя (ключ) для получения массива reducer-ов
-     * actions - массиы событий для данной группы reducer-ов (rootActions[name])
+     * actions - массивы событий для данной группы reducer-ов (rootActions[name])
      * action (автоматически прилетает из Саги-наблюдателя) - сформированное событие ({type, payload})
    * type должен быть `requestItems`
    * Осуществляется вызов API-функции [api.getItemsList()](frontend/src/api/index.js#L3-L19)
@@ -88,7 +90,7 @@
    * Универсальная Функция-генератор-работник (worker) для обработки событий отдельного элемента
    * PARAMS:
      * name    - имя (ключ) для получения массива reducer-ов
-     * actions - массиы событий для данной группы reducer-ов (rootActions[name])
+     * actions - массивы событий для данной группы reducer-ов (rootActions[name])
      * action (автоматически прилетает из Саги-наблюдателя) - сформированное событие ({type, payload})
    * type должен быть `requestItemDetails`
    * Осуществляется вызов API-функции [api.getItemDetails()](frontend/src/api/index.js#L23-L37)
@@ -98,7 +100,7 @@
    * Универсальная Функция-генератор-работник (worker) для обработки событий POST-запросов
    * PARAMS:
      * name    - имя (ключ) для получения массива reducer-ов
-     * actions - массиы событий для данной группы reducer-ов (rootActions[name])
+     * actions - массивы событий для данной группы reducer-ов (rootActions[name])
      * action (автоматически прилетает из Саги-наблюдателя) - сформированное событие ({type, payload})
    * type должен быть `requestItemDetails`
    * Осуществляется вызов API-функции [api.postData()](frontend/src/api/index.js#L41-L64)
@@ -228,7 +230,7 @@ _`storage_cart` дублируется в SessionStorage в рамках middlew
 * `/about` - информация об Интернет-магазине (отображается `AboutPage`([frontend/src/layouts/AboutPage/index.js](frontend/src/layouts/AboutPage/index.js)) 
   * 
 * `/contacts` - информация о контактах (отображается `ContactsPage`([frontend/src/layouts/ContactsPage/index.js](frontend/src/layouts/ContactsPage/index.js)) 
-* все остальное `/*` - нформация об ошибке (отображается `ErrorPage`([frontend/src/layouts/ErrorPage/index.js](frontend/src/layouts/ErrorPage/index.js)) 
+* все остальное `/*` - информация об ошибке (отображается `ErrorPage`([frontend/src/layouts/ErrorPage/index.js](frontend/src/layouts/ErrorPage/index.js)) 
 
  
  
