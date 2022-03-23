@@ -121,7 +121,8 @@ _КОРНЕВАЯ САГА_ [saga](frontend/src/sagas/index.js#L109-L132)
 
 
 Пример созданного Store:
-`{
+```
+{
   topSales: {
     items: [],
     selectedItem: {},
@@ -135,21 +136,23 @@ _КОРНЕВАЯ САГА_ [saga](frontend/src/sagas/index.js#L109-L132)
   items: {
     items: [],
     selectedItem: {},
-    status: 'idle'
+    status: 'idle' 
   },
   itemDetails: {
-    item: {},
+     item: {},
     status: 'idle'
   },
   storage_cart: {
     items: [],
-    status: 'idle'
+     status: 'idle'
   },
   post_cart: {
     result: {},
     status: 'idle'
   }
-}`
+}
+```
+
 
 _`storage_cart` дублируется в SessionStorage в рамках middleware [frontend/src/storage/index.js](frontend/src/storage/index.js)_
 
