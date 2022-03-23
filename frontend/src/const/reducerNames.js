@@ -15,7 +15,7 @@
     ],
 
     // события, связанные с загрузкой одного элемента
-    // должно быть событие setItemDetailsRequest
+    // должно быть событие getItemDetailsRequest
     reducersItemData: [
         {
             name: 'itemDetails',

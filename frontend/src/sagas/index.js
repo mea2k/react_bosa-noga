@@ -11,7 +11,7 @@ import { itemActions, listActions, postActions } from '../reducers';
 // Универсальная Функция-генератор-работник (worker) для обработки событий массива элементов
 // PARAMS:
 //   name    - имя (ключ) для получения массива reducer-ов
-//   actions - массиы событий для данной группы reducer-ов (rootActions[name])
+//   actions - массивы событий для данной группы reducer-ов (rootActions[name])
 //   action (автоматически прилетает из Саги-наблюдателя) - сформированное событие ({type, payload})
 //           type должен быть requestItems
 function* handleTemplateRequestItemsSaga(name, actions, action) {
@@ -47,7 +47,7 @@ function* handleTemplateRequestItemsSaga(name, actions, action) {
 // Универсальная Функция-генератор-работник (worker) для обработки событий выбранного элемента
 // PARAMS:
 //   name    - имя (ключ) для получения массива reducer-ов
-//   actions - массиы событий для данной группы reducer-ов (rootActions[name])
+//   actions - массивы событий для данной группы reducer-ов (rootActions[name])
 //   action (автоматически прилетает из Саги-наблюдателя) - сформированное событие ({type, payload})
 //           type должен быть requestItemDetails
 function* handleTemplateRequestItemDetailsSaga(name, actions, action) {
@@ -76,7 +76,7 @@ function* handleTemplateRequestItemDetailsSaga(name, actions, action) {
 // Универсальная Функция-генератор-работник (worker) для обработки событий POST-запросов
 // PARAMS:
 //   name    - имя (ключ) для получения массива reducer-ов
-//   actions - массиы событий для данной группы reducer-ов (rootActions[name])
+//   actions - массивы событий для данной группы reducer-ов (rootActions[name])
 //   action (автоматически прилетает из Саги-наблюдателя) - сформированное событие ({type, payload})
 //           type должен быть postDataRequest
 function* handleTemplatePostDataSaga(name, actions, action) {
